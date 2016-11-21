@@ -4,7 +4,7 @@
         $MaxLevel = '80',
         [ValidateSet('GuildWars2', 'HeartOfThorns')]
         $Edition = 'HeartOfThorns',
-        [ValidateSet('PvE', 'PvP', 'WvW', 'Special')]
+        [ValidateSet('All', 'PvE', 'PvP', 'WvW', 'Special')]
         $Content = 'PvE',
         [switch]$Tomorrow
     )
@@ -35,9 +35,21 @@
 
     Process { 
         
-        $APIv2.$($Content.ToLower()) | Where-Object -FilterScript {
+        If ($Content -eq 'All') {
+            'pve', 'pvp', 'wvw', 'special' | ForEach-Object {
+                $QueryAll = $APIv2.$($PSItem.ToLower()) | Where-Object -FilterScript {
+                    $PSItem.required_access -eq $Edition -and $PSItem.level.max -ge $MaxLevel -and $MaxLevel -ge $PSItem.level.min
+                } 
+                $Query = $Query + $QueryAll
+            }
+        }
+        Else {
+            $Query = $APIv2.$($Content.ToLower()) | Where-Object -FilterScript {
                 $PSItem.required_access -eq $Edition -and $PSItem.level.max -ge $MaxLevel -and $MaxLevel -ge $PSItem.level.min
-        } | Foreach-Object { 
+            } 
+        }
+        
+        $Query | Foreach-Object { 
     
             $Item = Invoke-RestMethod -Uri "https://api.guildwars2.com/v2/achievements/$($PSItem.id)"
 
