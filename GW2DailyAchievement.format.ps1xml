@@ -9,13 +9,10 @@
             <TableControl>
                 <TableHeaders>
                     <TableColumnHeader>
-                        <Width>20</Width>
+                        <Width>38</Width>
                     </TableColumnHeader>
                     <TableColumnHeader>
-                        <Width>20</Width>
-                    </TableColumnHeader>
-                    <TableColumnHeader>
-                        <Width>60</Width>
+                        <Width>150</Width>
                     </TableColumnHeader>
                 </TableHeaders>
                 <TableRowEntries>
@@ -25,10 +22,41 @@
                                 <PropertyName>Name</PropertyName>
                             </TableColumnItem>
                             <TableColumnItem>
-                                <PropertyName>Description</PropertyName>
+                                <PropertyName>Requirement</PropertyName>
+                            </TableColumnItem>
+                        </TableColumnItems>
+                    </TableRowEntry>
+                 </TableRowEntries>
+            </TableControl>
+        </View>
+        <View>
+            <Name>AJP.XV5.GW2DailyAchievementTips</Name>
+            <ViewSelectedBy>
+                <TypeName>AJP.XV5.GW2DailyAchievementTips</TypeName>
+            </ViewSelectedBy>
+            <TableControl>
+                <TableHeaders>
+                    <TableColumnHeader>
+                        <Width>30</Width>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Width>15</Width>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Width>150</Width>
+                    </TableColumnHeader>
+                </TableHeaders>
+                <TableRowEntries>
+                    <TableRowEntry>
+                        <TableColumnItems>
+                            <TableColumnItem>
+                                <PropertyName>Name</PropertyName>
                             </TableColumnItem>
                             <TableColumnItem>
-                                <PropertyName>Requirement</PropertyName>
+                                <PropertyName>Waypoint</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>Tip</PropertyName>
                             </TableColumnItem>
                         </TableColumnItems>
                     </TableRowEntry>
