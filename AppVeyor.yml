@@ -2,5 +2,4 @@ environment:
   my_variable:
     secure: bnSZVXfSGDUcS/T5Q3EsbQmXFjPp94kB1lNSEEK8h5FvC98v48pvxYqySe6KniEA
     
-install:
-  - cinst pester -y
+build: off
