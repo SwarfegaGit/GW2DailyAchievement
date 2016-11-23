@@ -30,7 +30,7 @@ CompanyName = 'xv5'
 Copyright = '(c) 2016 Andrew Palmer. All rights reserved.'
 
 # Description of the functionality provided by this module
-# Description = ''
+Description = "A module to query today and tomorrows 'Daily Achievements' for the game Guild Wars 2."
 
 # Minimum version of the Windows PowerShell engine required by this module
 PowerShellVersion = '3.0'
