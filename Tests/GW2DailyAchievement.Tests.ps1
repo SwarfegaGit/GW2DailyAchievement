@@ -1,3 +1,5 @@
+Import-Module $PSScriptRoot\..\GW2DailyAchievement -Force
+
 Describe "Get-GW2DailyAchievement PS$PSVersion Integrations tests" {
 
     It 'Should not error' {
