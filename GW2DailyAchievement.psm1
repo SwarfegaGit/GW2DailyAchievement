@@ -1,4 +1,19 @@
-﻿function Get-GW2DailyAchievement {
+﻿<#
+.Synopsis
+   Fetch today or tomorrows Daily Achievements.
+.DESCRIPTION
+   Fetch today or tomorrows Daily Achievements for PvE, PvP, WvW, Special (E.G Halloween).
+.EXAMPLE
+   Get-GW2DailyAchievement -Tomorrow
+   This will return all PvE daily achievements for tomorrow for an account who has a character at level 80.
+.EXAMPLE
+   Get-GW2DailyAchievement -MaxLevel 31 -Edition GuildWars2 -Content All
+   This will return all of todays daily achievements for a non-expansion account thats max character level is 31. The default edition is 'HeartOfThorns'.
+.EXAMPLE
+   Get-GW2DailyAchievement -Content PvP
+   This will return all PvP daily achievements for an account who has a character at level 80 and has the Heart of Thorns expansion.
+#>
+function Get-GW2DailyAchievement {
     [CmdletBinding()]
     Param(
         $MaxLevel = '80',
@@ -72,6 +87,21 @@
 
 }
 
+<#
+.Synopsis
+   To be used in the pipeline with the Get-GW2DailyAchievement function.
+.DESCRIPTION
+   To be used in the pipeline with the Get-GW2DailyAchievement function. This will fetch recommended tips on how to quickly complete a 'Miner', 'Forager', 'Lumberer' or 'Vista' daily achievement.
+.EXAMPLE
+   Get-GW2DailyAchievement | Get-GW2DailyAchievementTip
+   This will return a tip on how to quickly complete todays daily achievements. 
+.EXAMPLE
+   Get-GW2DailyAchievement -Tomorrow | Get-GW2DailyAchievementTip
+   This will return a tip on how to quickly complete tomorrows daily achievements. 
+.EXAMPLE
+   Get-GW2DailyAchievement -MaxLevel 24 -Edition GuildWars2 | Get-GW2DailyAchievementTip
+   This will return a tip on how to quickly complete tomorrows daily achievements for an account with a max level character of 24 and owns the base version of the game. 
+#>
 function Get-GW2DailyAchievementTip {
     [CmdletBinding()]
     Param(
@@ -99,7 +129,7 @@ function Get-GW2DailyAchievementTip {
                 # Ascalon
                 0001 { $Waypoint = '[&BMcDAAA=]'; $Tip = "Plains of Ashford -> Loreclaw Waypoint -> South is a potato patch." } # Forager
                 0002 { $Waypoint = '[&BIABAAA=]'; $Tip = "Plains of Ashford -> Run east from Smokestead Waypoint, there to find lots of trees (usually)." } # Lumberer
-                1981 { $Waypoint = '[&BPgGAAA=]'; $Tip = "Plains of Ashford -> Langmar Estate Waypoint -> there is a rich copper vein on the wp." } # - Miner
+                1981 { $Waypoint = '[&BPgGAAA=]'; $Tip = "Plains of Ashford -> Langmar Estate Waypoint -> there is a rich copper vein on the wp." } # Miner
                 1938 { $Waypoint = '[&BIgBAAA=]'; $Tip = "Plains of Ashford -> Watchcrag Tower Waypoint (Up the stairs/ledge)." } # Vista
 
                 # Heart of Maguuma
@@ -124,7 +154,7 @@ function Get-GW2DailyAchievementTip {
                 1980 { $Waypoint = '[&BIYHAAA=]'; $Tip = "Dry Top -> North West corner of the map from the Vine Bridge Waypoint." } # Forager
                 1979 { $Waypoint = 'None Yet'; $Tip = "For the Maguuma Wastes, since there is a lack of waypoints, you'll just have to run through Drytop and Silverwastes, I'll update the locations once guaranteed spots are found." } # Lumberer
                 1978 { $Waypoint = 'None Yet'; $Tip = "For the Maguuma Wastes, since there is a lack of waypoints, you'll just have to run through Drytop and Silverwastes, I'll update the locations once guaranteed spots are found." } # Miner
-                1937 { $Waypoint = '[&BH8HAAA=]'; $Tip = "SW -> Camp Resolve (West, one tricky jump at the Office Post)." } # Vista
+                1937 { $Waypoint = '[&BH8HAAA=]'; $Tip = "Camp Resolve -> Right next to the waypoint up the stairs." } # Vista
                 
                 # Shiverpeaks
                 1985 { $Waypoint = '[&BFECAAA=]'; $Tip = "Timberline Falls -> Thistlereed Waypoint -> West of this waypoint, you need to go up a hill to the North, you'll find a patch of Califlowers (yes, this waypoint is broken)" } # Forager
