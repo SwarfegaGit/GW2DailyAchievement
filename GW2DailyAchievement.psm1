@@ -152,8 +152,8 @@ function Get-GW2DailyAchievementTip {
 
                 # Maguuma Wastes
                 1980 { $Waypoint = '[&BIYHAAA=]'; $Tip = "Dry Top -> North West corner of the map from the Vine Bridge Waypoint." } # Forager
-                1979 { $Waypoint = 'None Yet'; $Tip = "For the Maguuma Wastes, since there is a lack of waypoints, you'll just have to run through Drytop and Silverwastes, I'll update the locations once guaranteed spots are found." } # Lumberer
-                1978 { $Waypoint = 'None Yet'; $Tip = "For the Maguuma Wastes, since there is a lack of waypoints, you'll just have to run through Drytop and Silverwastes, I'll update the locations once guaranteed spots are found." } # Miner
+                1979 { $Waypoint = 'None'; $Tip = "For the Maguuma Wastes, since there is a lack of waypoints, you'll just have to run through Drytop and Silverwastes, I'll update the locations once guaranteed spots are found." } # Lumberer
+                1978 { $Waypoint = 'None'; $Tip = "For the Maguuma Wastes, since there is a lack of waypoints, you'll just have to run through Drytop and Silverwastes, I'll update the locations once guaranteed spots are found." } # Miner
                 1937 { $Waypoint = '[&BH8HAAA=]'; $Tip = "Camp Resolve -> Right next to the waypoint up the stairs." } # Vista
                 
                 # Shiverpeaks
@@ -163,7 +163,7 @@ function Get-GW2DailyAchievementTip {
                 1936 { $Waypoint = '[&BI4DAAA=]'; $Tip = "Hoelbrak -> Southern Watchpost Waypoint (North, one jump)." } # Vista
                 
                 # Orr
-                0006 { $Waypoint = ''; $Tip = "Swim in the river of Cursed Shore." } # Forager
+                1974 { $Waypoint = '[&BB8DAAA=]'; $Tip = "Swim in the river of Cursed Shore." } # Forager
                 1976 { $Waypoint = '[&BKYCAAA=]'; $Tip = "Malchor's Leap -> Pagga's Waypoint -> West -> Loads of trees near the statue of Melandru." } # Lumberer
                 1977 { $Waypoint = '[&BKYCAAA=]'; $Tip = "Malchor's Leap -> Pagga's Waypoint -> West -> usually a few mithrils around the cliffs nearby" } # Miner
                 1932 { $Waypoint = '[&BKYCAAA=]'; $Tip = "Malchor's -> Pagga's Waypoint (North up the Mountain)(Other vistas closer to waypoints, but these are usually contested)." } # Vista
