@@ -135,8 +135,8 @@ function Get-GW2DailyAchievementTip {
                 # Heart of Maguuma
                 2912 { $Waypoint = '[&BOAHAAA=]'; $Tip = "Verdant Brink -> Jump north east of the Jaka Itzel waypoint and fall down to the bottom of the map glide at the bottom under the tree." } # Forager
                 0003 { $Waypoint = 'None Yet'; $Tip = "None Yet." } # Lumberer
-                0004 { $Waypoint = 'None Yet'; $Tip = "None Yet." } # Miner
-                0005 { $Waypoint = 'None Yet'; $Tip = "None Yet." } # Vista
+                2957 { $Waypoint = 'None Yet'; $Tip = "None Yet." } # Miner
+                2983 { $Waypoint = '[&BOAHAAA=]'; $Tip = "Verdent Brink -> Right next the Jaka Itzel Waypoint." } # Vista
 
                 # Kryta
                 1975 { $Waypoint = '[&BPoAAAA=]'; $Tip = "Queensdale -> Beetletun Waypoint (CM entrance) -> Run south, you'll find a farm with lots of foraging." } # Forager
