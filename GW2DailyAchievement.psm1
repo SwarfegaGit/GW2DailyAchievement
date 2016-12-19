@@ -127,7 +127,7 @@ function Get-GW2DailyAchievementTip {
             $switch = switch ($id) {
             
                 # Ascalon
-                0001 { $Waypoint = '[&BMcDAAA=]'; $Tip = "Plains of Ashford -> Loreclaw Waypoint -> South is a potato patch." } # Forager
+                1838 { $Waypoint = '[&BMcDAAA=]'; $Tip = "Plains of Ashford -> Loreclaw Waypoint -> South is a potato patch." } # Forager
                 1837 { $Waypoint = '[&BIABAAA=]'; $Tip = "Plains of Ashford -> Run east from Smokestead Waypoint, there to find lots of trees (usually)." } # Lumberer
                 1981 { $Waypoint = '[&BPgGAAA=]'; $Tip = "Plains of Ashford -> Langmar Estate Waypoint -> there is a rich copper vein on the wp." } # Miner
                 1938 { $Waypoint = '[&BIgBAAA=]'; $Tip = "Plains of Ashford -> Watchcrag Tower Waypoint (Up the stairs/ledge)." } # Vista
