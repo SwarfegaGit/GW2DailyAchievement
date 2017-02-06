@@ -25,15 +25,15 @@ Fetch all available Daily Achievements including Special (events such as Winters
 ```powershell
 Get-GW2DailyAchievement -Content All
 ```
-Fetch todays PvE Daily Achievements and get a tip (with waypoint) on the quickest method of completing
+Fetch todays PvE Daily Achievements and get a tip (with waypoint) on the quickest method of completing. Use Format-Table to wrap the often lengthy Tip property
 ```powershell
-Get-GW2DailyAchievement | Get-GW2DailyAchievementTip
+Get-GW2DailyAchievement | Get-GW2DailyAchievementTip | Format-Table -Wrap
 ```
 Fetch todays PvE Daily Achievements with tip and save the waypoint to the clipboard ready for pasting into the game (PowerShell v5 required)
 ```powershell
-(Get-GW2DailyAchievement | Get-GW2DailyAchievementTip).Waypoint | Set-Clipboard
+Get-GW2DailyAchievement | Get-GW2DailyAchievementTip -OutVariable GW2; ($GW2).Waypoint | Set-Clipboard
 ```
 (Pre-PowerShell v5)
 ```powershell
-(Get-GW2DailyAchievement | Get-GW2DailyAchievementTip).Waypoint | clip
+Get-GW2DailyAchievement | Get-GW2DailyAchievementTip -OutVariable GW2; ($GW2).Waypoint | clip
 ```
