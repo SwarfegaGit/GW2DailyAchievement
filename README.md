@@ -31,9 +31,9 @@ Get-GW2DailyAchievement | Get-GW2DailyAchievementTip | Format-Table -Wrap
 ```
 Fetch todays PvE Daily Achievements with tip and save the waypoint to the clipboard ready for pasting into the game (PowerShell v5 required)
 ```powershell
-Get-GW2DailyAchievement | Get-GW2DailyAchievementTip -OutVariable GW2; ($GW2).Waypoint | Set-Clipboard
+Get-GW2DailyAchievement | Get-GW2DailyAchievementTip -OutVariable GW2 | Format-Table -Wrap ; ($GW2).Waypoint | Set-Clipboard
 ```
 (Pre-PowerShell v5)
 ```powershell
-Get-GW2DailyAchievement | Get-GW2DailyAchievementTip -OutVariable GW2; ($GW2).Waypoint | clip
+Get-GW2DailyAchievement | Get-GW2DailyAchievementTip -OutVariable GW2 | Format-Table -Wrap ; ($GW2).Waypoint | clip
 ```
