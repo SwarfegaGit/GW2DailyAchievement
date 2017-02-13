@@ -25,7 +25,7 @@ Get-GW2DailyAchievement -Content PvP
 ```
 Fetch todays WvW Daily Achievement when the highest level character in your account is 23
 ```powershell
-Get-GW2DailyAchievement -Content WvW -Level 23
+Get-GW2DailyAchievement -Content WvW -MaxLevel 23
 ```
 Fetch all available Daily Achievements including Special (events such as Wintersday) achievements
 ```powershell
