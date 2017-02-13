@@ -148,14 +148,14 @@ function Get-GW2DailyAchievementTip {
 
                     # Maguuma Jungle
                     1973 { $Waypoint = '[&BEIAAAA=]'; $Tip = "Metrica Province -> Akk Wilds Waypoint -> To the North is a platform with a farm, it is above ground." } # Forager
-                    1970 { $Waypoint = '[&BM0BAAA=] [&BM4BAAA=]'; $Tip = "Sparkfly Fen -> Between Darkweather Waypoint, Brackwater Waypont and the portal to Straits of Devastation: usually a few trees." } # Lumberer
+                    1970 { $Waypoint = '[&BM4BAAA=]'; $Tip = "Sparkfly Fen -> Between Darkweather Waypoint, Brackwater Waypont and the portal to Straits of Devastation: usually a few trees." } # Lumberer
                     1969 { $Waypoint = '[&BMkCAAA=]'; $Tip = "Mount Maelstrom -> Criterion Waypoint -> To the west (close to the POI) is a rich platinum vein." } # Miner
                     1931 { $Waypoint = '[&BEQAAAA=]'; $Tip = "Metrica Province -> Atrerium Haven (West, up the tower)." } # Vista
 
                     # Maguuma Wastes
                     1980 { $Waypoint = '[&BIYHAAA=]'; $Tip = "Dry Top -> North West corner of the map from the Vine Bridge Waypoint." } # Forager
-                    1979 { $Waypoint = 'None'; $Tip = "For the Maguuma Wastes, since there is a lack of waypoints, you'll just have to run through Drytop and Silverwastes, I'll update the locations once guaranteed spots are found." } # Lumberer
-                    1978 { $Waypoint = 'None'; $Tip = "For the Maguuma Wastes, since there is a lack of waypoints, you'll just have to run through Drytop and Silverwastes, I'll update the locations once guaranteed spots are found." } # Miner
+                    1979 { $Waypoint = 'None'; $Tip = "For the Maguuma Wastes, since there is a lack of waypoints, you'll just have to run through Drytop and Silverwastes." } # Lumberer
+                    1978 { $Waypoint = 'None'; $Tip = "For the Maguuma Wastes, since there is a lack of waypoints, you'll just have to run through Drytop and Silverwastes." } # Miner
                     1937 { $Waypoint = '[&BH8HAAA=]'; $Tip = "Camp Resolve -> Right next to the waypoint up the stairs." } # Vista
                     
                     # Shiverpeaks
@@ -180,9 +180,6 @@ function Get-GW2DailyAchievementTip {
                     Waypoint = $Waypoint
                     Tip = $Tip
                 }
-
-                #Clear-Variable -Name Waypoint
-                #Clear-Variable -Name Tip
 
             }
             Else {
