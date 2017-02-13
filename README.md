@@ -2,6 +2,12 @@ GW2DailyAchievement
 =======
 GW2DailyAchievement is a simple PowerShell module to fetch and parse the daily achievement API (https://wiki.guildwars2.com/wiki/API:2/achievements/daily).
 
+Installation via the PowerShell Gallery
+---------------------------------------
+```powershell
+Install-Module GW2DailyAchievement
+```
+
 Usage
 ------
 
