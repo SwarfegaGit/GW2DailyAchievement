@@ -1,25 +1,61 @@
 Import-Module $PSScriptRoot\..\GW2DailyAchievement -Force
 
-Describe "Get-GW2DailyAchievement PS$PSVersion Integrations tests" {
+Describe 'GW2DailyAchievement Tests' {
 
-    It 'Should not error' {
-        Get-GW2DailyAchievement | Should Not BeNullOrEmpty
+    Context 'Get-GW2DailyAchievement Tests' {
+
+        It 'No custom parameters' {
+            Get-GW2DailyAchievement | Should Not BeNullOrEmpty
+        }
+
+        It 'Custom parameter Tomorrow' {
+            Get-GW2DailyAchievement -Tomorrow | Should Not BeNullOrEmpty
+        }
+
+        It 'Custom parameter MaxLevel' {
+            Get-GW2DailyAchievement -MaxLevel 21 | Should Not BeNullOrEmpty
+        }
+
+        It 'Custom parameter Content' {
+            Get-GW2DailyAchievement -Content WvW, PvP | Should Not BeNullOrEmpty
+        }
+
     }
 
-    It 'Tomorrow - Should not error' {
-        Get-GW2DailyAchievement -Tomorrow | Should Not BeNullOrEmpty
+    Context 'Get-GW2DailyAchievementTip Tests' {
+
+        It 'No custom parameters' {
+            Get-GW2DailyAchievement | Get-GW2DailyAchievementTip | Should Not BeNullOrEmpty
+        }
+
+        It 'Custom parameter Edition' {
+            Get-GW2DailyAchievement -Edition GuildWars2 | Get-GW2DailyAchievementTip | Should Not BeNullOrEmpty
+        }
+
+        It 'Custom parameter MaxLevel' {
+            Get-GW2DailyAchievement -MaxLevel 32 | Get-GW2DailyAchievementTip | Should Not BeNullOrEmpty
+        }
+
+        It 'Custom parameter MaxLevel, Edition and Tomorrow' {
+            Get-GW2DailyAchievement -MaxLevel 32 -Edition GuildWars2 -Tomorrow | Get-GW2DailyAchievementTip | Should Not BeNullOrEmpty
+        }
+
     }
 
-     It 'Edition and Tip Should not error' {
-        Get-GW2DailyAchievement -Edition GuildWars2 | Get-GW2DailyAchievementTip | Should Not BeNullOrEmpty
+    Context 'Get-GW2DailyFractals Tests' {
+
+        It 'No custom parameters' {
+            Get-GW2DailyFractals | Should Not BeNullOrEmpty
+        }
+
     }
 
-     It 'Level 21 - Should not error' {
-        Get-GW2DailyAchievement -MaxLevel 21 | Should Not BeNullOrEmpty
-    }
+    Context 'Get-GW2DailyFractalsReward Tests' {
 
-     It 'WvW - Should not error' {
-        Get-GW2DailyAchievement -Content WvW | Should Not BeNullOrEmpty
+        It 'No custom parameters' {
+            Get-GW2DailyFractals | Get-GW2DailyFractalsReward | Should Not BeNullOrEmpty
+        }
+
     }
 
 }

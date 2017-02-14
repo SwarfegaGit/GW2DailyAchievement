@@ -2,12 +2,15 @@
 <Configuration>
     <ViewDefinitions>
         <View>
-            <Name>AJP.XV5.GW2DailyAchievement</Name>
+            <Name>XV5.AJP.GW2DailyAchievement</Name>
             <ViewSelectedBy>
-                <TypeName>AJP.XV5.GW2DailyAchievement</TypeName>
+                <TypeName>XV5.AJP.GW2DailyAchievement</TypeName>
             </ViewSelectedBy>
             <TableControl>
                 <TableHeaders>
+                    <TableColumnHeader>
+                        <Width>7</Width>
+                    </TableColumnHeader>
                     <TableColumnHeader>
                         <Width>38</Width>
                     </TableColumnHeader>
@@ -18,6 +21,9 @@
                 <TableRowEntries>
                     <TableRowEntry>
                         <TableColumnItems>
+                            <TableColumnItem>
+                                <PropertyName>Content</PropertyName>
+                            </TableColumnItem>
                             <TableColumnItem>
                                 <PropertyName>Name</PropertyName>
                             </TableColumnItem>
@@ -30,9 +36,9 @@
             </TableControl>
         </View>
         <View>
-            <Name>AJP.XV5.GW2DailyAchievementTips</Name>
+            <Name>XV5.AJP.GW2DailyAchievementTips</Name>
             <ViewSelectedBy>
-                <TypeName>AJP.XV5.GW2DailyAchievementTips</TypeName>
+                <TypeName>XV5.AJP.GW2DailyAchievementTips</TypeName>
             </ViewSelectedBy>
             <TableControl>
                 <TableHeaders>
@@ -62,6 +68,57 @@
                     </TableRowEntry>
                  </TableRowEntries>
             </TableControl>
-        </View>        
+        </View>
+        <View>
+            <Name>XV5.AJP.GW2DailyOthers</Name>
+            <ViewSelectedBy>
+                <TypeName>XV5.AJP.GW2DailyOthers</TypeName>
+            </ViewSelectedBy>
+            <TableControl>
+                <TableHeaders>
+                    <TableColumnHeader>
+                        <Width>35</Width>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Width>90</Width>
+                    </TableColumnHeader>
+                </TableHeaders>
+                <TableRowEntries>
+                    <TableRowEntry>
+                        <TableColumnItems>
+                            <TableColumnItem>
+                                <PropertyName>Name</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>Requirement</PropertyName>
+                            </TableColumnItem>
+                        </TableColumnItems>
+                    </TableRowEntry>
+                 </TableRowEntries>
+            </TableControl>
+        </View>
+        <View>
+            <Name>XV5.AJP.GW2DailyFractalsReward</Name>
+            <ViewSelectedBy>
+                <TypeName>XV5.AJP.GW2DailyFractalsReward</TypeName>
+            </ViewSelectedBy>
+            <ListControl>
+                <ListEntries>
+                    <ListEntry>
+                        <ListItems>
+                            <ListItem>
+                                <PropertyName>Name</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <PropertyName>RewardName</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <PropertyName>RewardDescription</PropertyName>
+                            </ListItem>
+                        </ListItems>
+                    </ListEntry>
+                </ListEntries>
+            </ListControl>
+        </View>
     </ViewDefinitions>
 </Configuration>

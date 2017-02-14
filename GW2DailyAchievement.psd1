@@ -12,7 +12,7 @@
 RootModule = 'GW2DailyAchievement.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.1.1.0'
+ModuleVersion = '2.0.0.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -69,7 +69,9 @@ FormatsToProcess = @('GW2DailyAchievement.format.ps1xml')
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Get-GW2DailyAchievement', 'Get-GW2DailyAchievementTip'
+FunctionsToExport = @('Get-GW2DailyAchievement', 'Get-GW2DailyAchievementTip', 'Get-GW2DailyFractals', 'Get-GW2DailyFractalsReward', 'Get-GW2DailyBloodstoneFen',
+                    'Get-GW2DailyEmberBay', 'Get-GW2DailyBitterfrostFrontier', 'Get-GW2DailyLakeDoric')
+
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 # CmdletsToExport = '*'

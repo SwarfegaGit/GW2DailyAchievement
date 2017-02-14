@@ -1,26 +1,29 @@
-﻿<#
-.Synopsis
-   Fetch today or tomorrows Daily Achievements.
-.DESCRIPTION
-   Fetch today or tomorrows Daily Achievements for PvE, PvP, WvW, Special (E.G Halloween).
-.EXAMPLE
-   Get-GW2DailyAchievement -Tomorrow
-   This will return all PvE daily achievements for tomorrow for an account who has a character at level 80.
-.EXAMPLE
-   Get-GW2DailyAchievement -MaxLevel 31 -Edition GuildWars2 -Content All
-   This will return all of todays daily achievements for a non-expansion account thats max character level is 31. The default edition is 'HeartOfThorns'.
-.EXAMPLE
-   Get-GW2DailyAchievement -Content PvP
-   This will return all PvP daily achievements for an account who has a character at level 80 and has the Heart of Thorns expansion.
-#>
-function Get-GW2DailyAchievement {
+﻿function Get-GW2DailyAchievement {
+    <#
+    .Synopsis
+       Fetch today or tomorrows Daily Achievements.
+    .DESCRIPTION
+       Fetch today or tomorrows Daily Achievements for PvE, PvP, WvW, Special (E.G Halloween).
+    .EXAMPLE
+       Get-GW2DailyAchievement -Tomorrow
+       This will return all daily achievements for tomorrow for an account who has a character at level 80 and owns the Heart Of Thorns expansion.
+    .EXAMPLE
+       Get-GW2DailyAchievement -MaxLevel 31 -Edition GuildWars2
+       This will return all of todays daily achievements for a non-expansion account thats max character level is 31.
+    .EXAMPLE
+       Get-GW2DailyAchievement -Content PvP
+       This will return just PvP daily achievements for an account who has a character at level 80 and has the Heart of Thorns expansion.
+    .EXAMPLE
+       Get-GW2DailyAchievement -Content PvP, PvE
+       This will return both PvP and PvE daily achievements for an account who has a character at level 80 and has the Heart of Thorns expansion.
+    #>
     [CmdletBinding()]
     Param(
         $MaxLevel = '80',
         [ValidateSet('GuildWars2', 'HeartOfThorns')]
         $Edition = 'HeartOfThorns',
-        [ValidateSet('All', 'PvE', 'PvP', 'WvW', 'Special')]
-        $Content = 'PvE',
+        [ValidateSet('PvE', 'PvP', 'WvW', 'Special')]
+        [string[]]$Content = ('PvE', 'PvP', 'WvW', 'Special'),
         [switch]$Tomorrow
     )
 
@@ -31,12 +34,12 @@ function Get-GW2DailyAchievement {
             switch ($Tomorrow) {
                 
                 $false { 
-                    Write-Verbose -Message "Fecthing daily achievements for $Content for today."
-                    $APIv2 = Invoke-RestMethod -Uri https://api.guildwars2.com/v2/achievements/daily -ErrorAction Stop 
+                    Write-Verbose -Message "Fecthing daily achievements for  for today."
+                    $APIv2 = Invoke-RestMethod -Uri https://api.guildwars2.com/v2/achievements/daily -ErrorAction Stop -TimeoutSec '5'
                 }
                 $true { 
-                    Write-Verbose -Message "Fecthing daily achievements for $Content for tomorrow."
-                    $APIv2 = Invoke-RestMethod -Uri https://api.guildwars2.com/v2/achievements/daily/tomorrow -ErrorAction Stop
+                    Write-Verbose -Message "Fecthing daily achievements for $($Content -join ', ') for tomorrow."
+                    $APIv2 = Invoke-RestMethod -Uri https://api.guildwars2.com/v2/achievements/daily/tomorrow -ErrorAction Stop -TimeoutSec '5'
                 }
 
             }
@@ -49,34 +52,28 @@ function Get-GW2DailyAchievement {
     }
 
     Process { 
-        
-        If ($Content -eq 'All') {
-            'pve', 'pvp', 'wvw', 'special' | ForEach-Object {
-                $QueryAll = $APIv2.$($PSItem.ToLower()) | Where-Object -FilterScript {
-                    $PSItem.required_access -eq $Edition -and $PSItem.level.max -ge $MaxLevel -and $MaxLevel -ge $PSItem.level.min
-                } 
-                $Query = $Query + $QueryAll
-            }
-        }
-        Else {
-            $Query = $APIv2.$($Content.ToLower()) | Where-Object -FilterScript {
-                $PSItem.required_access -eq $Edition -and $PSItem.level.max -ge $MaxLevel -and $MaxLevel -ge $PSItem.level.min
-            } 
-        }
-        
-        $Query | Foreach-Object { 
-    
-            $Item = Invoke-RestMethod -Uri "https://api.guildwars2.com/v2/achievements/$($PSItem.id)"
 
-            [PSCustomObject] @{
-                PSTypeName = 'AJP.XV5.GW2DailyAchievement'
-                Id = $PSItem.id
-                Name = $Item.Name
-                Description = $Item.description
-                Requirement = $Item.requirement
-                MinLevelRequired = $PSItem.level.min
-                MaxLevelRequired = $PSItem.level.max
-                RequiredAccess = $PSItem.required_access
+        $Content | ForEach-Object {
+            $ContentName = $PSItem
+            $Query = $APIv2.$($PSItem.ToLower()) | Where-Object -FilterScript {
+                $PSItem.required_access -eq $Edition -and $PSItem.level.max -ge $MaxLevel -and $MaxLevel -ge $PSItem.level.min
+            }
+            $Query | Foreach-Object { 
+    
+                $Item = Invoke-RestMethod -Uri "https://api.guildwars2.com/v2/achievements/$($PSItem.id)"
+
+                [PSCustomObject] @{
+                    PSTypeName = 'XV5.AJP.GW2DailyAchievement'
+                    Id = $PSItem.id
+                    Name = $Item.Name
+                    Content = $ContentName
+                    Description = $Item.description
+                    Requirement = $Item.requirement
+                    MinLevelRequired = $PSItem.level.min
+                    MaxLevelRequired = $PSItem.level.max
+                    RequiredAccess = $PSItem.required_access
+                }
+
             }
 
         }
@@ -87,22 +84,24 @@ function Get-GW2DailyAchievement {
 
 }
 
-<#
-.Synopsis
-   To be used in the pipeline with the Get-GW2DailyAchievement function.
-.DESCRIPTION
-   To be used in the pipeline with the Get-GW2DailyAchievement function. This will fetch recommended tips on how to quickly complete a 'Miner', 'Forager', 'Lumberer' or 'Vista' daily achievement.
-.EXAMPLE
-   Get-GW2DailyAchievement | Get-GW2DailyAchievementTip
-   This will return a tip on how to quickly complete todays daily achievements. 
-.EXAMPLE
-   Get-GW2DailyAchievement -Tomorrow | Get-GW2DailyAchievementTip
-   This will return a tip on how to quickly complete tomorrows daily achievements. 
-.EXAMPLE
-   Get-GW2DailyAchievement -MaxLevel 24 -Edition GuildWars2 | Get-GW2DailyAchievementTip
-   This will return a tip on how to quickly complete tomorrows daily achievements for an account with a max level character of 24 and owns the base version of the game. 
-#>
 function Get-GW2DailyAchievementTip {
+    <#
+    .Synopsis
+       To be used in the pipeline with the Get-GW2DailyAchievement function.
+    .DESCRIPTION
+       To be used in the pipeline with the Get-GW2DailyAchievement function. This will fetch recommended tips on how to quickly complete a 'Miner', 'Forager', 'Lumberer' or 'Vista' daily achievement.
+    .EXAMPLE
+       Get-GW2DailyAchievement | Get-GW2DailyAchievementTip
+       This will return a tip on how to quickly complete today's daily achievements. 
+    .EXAMPLE
+       Get-GW2DailyAchievement -Tomorrow | Get-GW2DailyAchievementTip
+       This will return a tip on how to quickly complete tomorrow's daily achievements. 
+    .EXAMPLE
+       Get-GW2DailyAchievement -MaxLevel 24 -Edition GuildWars2 | Get-GW2DailyAchievementTip
+       This will return a tip on how to quickly complete tomorrow's daily achievements for an account with a max level character of 24 and owns the base version of the game. 
+    .NOTES
+       1.2.0.0 - 14/02/2017 - Removed 'All' content. Added Content parameter to output.
+    #>
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory=$true,
@@ -113,12 +112,7 @@ function Get-GW2DailyAchievementTip {
         [string]$Name
     )
 
-    Begin {
-        
-        #New-Variable -Name Waypoint
-        #New-Variable -Name Tip
-    
-    }
+    Begin {}
 
     Process {
 
@@ -174,7 +168,7 @@ function Get-GW2DailyAchievementTip {
                 }
 
                 [PSCustomObject] @{
-                    PSTypeName = 'AJP.XV5.GW2DailyAchievementTips'
+                    PSTypeName = 'XV5.AJP.GW2DailyAchievementTips'
                     Id = $PSitem.id
                     Name = $PSitem.Name
                     Waypoint = $Waypoint
@@ -191,6 +185,186 @@ function Get-GW2DailyAchievementTip {
 
     }
 
-    End{}
+    End {}
+
+}
+
+function Get-GW2DailyFractals {
+    [CmdletBinding()]
+    Param(
+    )
+
+    Begin {
+    
+        $APIv2 = Invoke-RestMethod -Uri https://api.guildwars2.com/v2/achievements/categories/88 -ErrorAction Stop -TimeoutSec '5'
+
+    }
+    Process {
+        $APIv2.achievements | ForEach-Object {
+        
+            $Item = Invoke-RestMethod -Uri "https://api.guildwars2.com/v2/achievements/$PSItem"
+
+            [PSCustomObject] @{
+                PSTypeName = 'XV5.AJP.GW2DailyOthers'
+                Id = $PSItem
+                Name = $Item.Name
+                Requirement = $Item.requirement
+                RewardId = $Item.rewards.id
+            }
+
+        }
+    }
+    End {}
+
+}
+
+function Get-GW2DailyFractalsReward {
+    [CmdletBinding()]
+    Param(
+        [Parameter(Mandatory=$true,
+            ValueFromPipelineByPropertyName=$true)]
+        $Name,
+        [Parameter(Mandatory=$true,
+            ValueFromPipelineByPropertyName=$true)]
+        $RewardId
+    )
+
+    Begin {}
+
+    Process {
+        $PSItem | ForEach-Object {
+        
+            $Reward = Invoke-RestMethod -Uri "https://api.guildwars2.com/v2/items/$($PSItem.RewardId)"
+
+            [PSCustomObject] @{
+                PSTypeName = 'XV5.AJP.GW2DailyFractalsReward'
+                Name = $PSItem.Name
+                RewardName = $Reward.Name
+                RewardDescription = $Reward.description
+                Rarity = $Reward.rarity
+                ChatLink = $Reward.chat_link
+                Icon = $Reward.icon
+            }
+
+        }
+    }
+
+    End {}
+
+}
+
+function Get-GW2DailyBloodstoneFen {
+    [CmdletBinding()]
+    Param(
+    )
+
+    Begin {
+    
+        $APIv2 = Invoke-RestMethod -Uri https://api.guildwars2.com/v2/achievements/categories/142 -ErrorAction Stop -TimeoutSec '5'
+
+    }
+    Process {
+        $APIv2.achievements | ForEach-Object {
+        
+            $Item = Invoke-RestMethod -Uri "https://api.guildwars2.com/v2/achievements/$PSItem"
+
+            [PSCustomObject] @{
+                PSTypeName = 'XV5.AJP.GW2DailyOthers'
+                Id = $PSItem
+                Name = $Item.Name
+                Requirement = $Item.requirement
+                RewardId = $Item.rewards.id
+            }
+
+        }
+    }
+    End {}
+
+}
+
+function Get-GW2DailyEmberBay {
+    [CmdletBinding()]
+    Param(
+    )
+
+    Begin {
+    
+        $APIv2 = Invoke-RestMethod -Uri https://api.guildwars2.com/v2/achievements/categories/145 -ErrorAction Stop -TimeoutSec '5'
+
+    }
+    Process {
+        $APIv2.achievements | ForEach-Object {
+        
+            $Item = Invoke-RestMethod -Uri "https://api.guildwars2.com/v2/achievements/$PSItem"
+
+            [PSCustomObject] @{
+                PSTypeName = 'XV5.AJP.GW2DailyOthers'
+                Id = $PSItem
+                Name = $Item.Name
+                Requirement = $Item.requirement
+                RewardId = $Item.rewards.id
+            }
+
+        }
+    }
+    End {}
+
+}
+
+function Get-GW2DailyBitterfrostFrontier {
+    [CmdletBinding()]
+    Param(
+    )
+
+    Begin {
+    
+        $APIv2 = Invoke-RestMethod -Uri https://api.guildwars2.com/v2/achievements/categories/149 -ErrorAction Stop -TimeoutSec '5'
+
+    }
+    Process {
+        $APIv2.achievements | ForEach-Object {
+        
+            $Item = Invoke-RestMethod -Uri "https://api.guildwars2.com/v2/achievements/$PSItem"
+
+            [PSCustomObject] @{
+                PSTypeName = 'XV5.AJP.GW2DailyOthers'
+                Id = $PSItem
+                Name = $Item.Name
+                Requirement = $Item.requirement
+                RewardId = $Item.rewards.id
+            }
+
+        }
+    }
+    End {}
+
+}
+
+function Get-GW2DailyGW2DailyLakeDoric {
+    [CmdletBinding()]
+    Param(
+    )
+
+    Begin {
+    
+        $APIv2 = Invoke-RestMethod -Uri https://api.guildwars2.com/v2/achievements/categories/159 -ErrorAction Stop -TimeoutSec '5'
+
+    }
+    Process {
+        $APIv2.achievements | ForEach-Object {
+        
+            $Item = Invoke-RestMethod -Uri "https://api.guildwars2.com/v2/achievements/$PSItem"
+
+            [PSCustomObject] @{
+                PSTypeName = 'XV5.AJP.GW2DailyOthers'
+                Id = $PSItem
+                Name = $Item.Name
+                Requirement = $Item.requirement
+                RewardId = $Item.rewards.id
+            }
+
+        }
+    }
+    End {}
 
 }
