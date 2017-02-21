@@ -340,7 +340,7 @@ function Get-GW2DailyBitterfrostFrontier {
 
 }
 
-function Get-GW2DailyGW2DailyLakeDoric {
+function Get-GW2DailyLakeDoric {
     [CmdletBinding()]
     Param(
     )
