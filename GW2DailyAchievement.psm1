@@ -130,8 +130,8 @@ function Get-GW2DailyAchievementTip {
 
                     # Heart of Maguuma
                     2912 { $Waypoint = '[&BOAHAAA=]'; $Tip = "Verdant Brink -> Jump north east of the Jaka Itzel waypoint and fall down to the bottom of the map glide at the bottom under the tree." } # Forager
-                    0003 { $Waypoint = 'None'; $Tip = "None. Please report if you have a valid tip." } # Lumberer
-                    2957 { $Waypoint = 'None'; $Tip = "None. Please report if you have a valid tip." } # Miner
+                    2937 { $Waypoint = 'None'; $Tip = "None. Use your Guild Hall nodes then finish off with the HoT maps." } # Lumberer
+                    2957 { $Waypoint = 'None'; $Tip = "None. Use your Guild Hall nodes then finish off with the HoT maps." } # Miner
                     2983 { $Waypoint = '[&BOAHAAA=]'; $Tip = "Verdent Brink -> Right next the Jaka Itzel Waypoint." } # Vista
 
                     # Kryta
@@ -164,7 +164,7 @@ function Get-GW2DailyAchievementTip {
                     1977 { $Waypoint = '[&BKYCAAA=]'; $Tip = "Malchor's Leap -> Pagga's Waypoint -> West -> usually a few mithrils around the cliffs nearby" } # Miner
                     1932 { $Waypoint = '[&BKYCAAA=]'; $Tip = "Malchor's -> Pagga's Waypoint (North up the Mountain)(Other vistas closer to waypoints, but these are usually contested)." } # Vista
                     
-                    default { $Waypoint = $null; $Tip = "Tip not found. Report this as a bug quoting ID '$($PSitem.id)'." } 
+                    default { $Waypoint = $null; $Tip = "Tip not found. Report this as a bug quoting ID '$id)'." } 
                 }
 
                 [PSCustomObject] @{
