@@ -4,7 +4,7 @@ Describe 'GW2DailyAchievement Tests' {
 
     Context 'Get-GW2DailyAchievement Tests' {
 
-        It 'No custom parameters' {
+        It 'Use default parameters' {
             Get-GW2DailyAchievement | Should Not BeNullOrEmpty
         }
 
@@ -18,6 +18,18 @@ Describe 'GW2DailyAchievement Tests' {
 
         It 'Custom parameter Content' {
             Get-GW2DailyAchievement -Content WvW, PvP | Should Not BeNullOrEmpty
+        }
+
+        It 'Set Edition to Base' {
+            Get-GW2DailyAchievement -Edition GuildWars2 | Should Not BeNullOrEmpty
+        }
+
+        It 'Set Edition to HeartOfThorns' {
+            Get-GW2DailyAchievement -Edition HeartOfThorns | Should Not BeNullOrEmpty
+        }
+
+        It 'Set Edition to PathOfFire' {
+            Get-GW2DailyAchievement -Edition PathOfFire | Should Not BeNullOrEmpty
         }
 
     }
