@@ -20,8 +20,8 @@
     [CmdletBinding()]
     Param(
         $MaxLevel = '80',
-        [ValidateSet('GuildWars2', 'HeartOfThorns')]
-        $Edition = 'HeartOfThorns',
+        [ValidateSet('GuildWars2', 'HeartOfThorns', 'PathOfFire')]
+        $Edition = 'PathOfFire',
         [ValidateSet('PvE', 'PvP', 'WvW', 'Special')]
         [string[]]$Content = ('PvE', 'PvP', 'WvW', 'Special'),
         [switch]$Tomorrow
