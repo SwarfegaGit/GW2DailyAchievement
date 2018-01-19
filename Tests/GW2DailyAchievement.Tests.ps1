@@ -1,7 +1,6 @@
-$root = (Resolve-Path $PSScriptRoot\..\..).Path
-$outFolder = "$root\out"
+$root = (Resolve-Path $PSScriptRoot\..).Path
 
-Import-Module $outFolder\GW2DailyAchievement -Force
+Import-Module $root\GW2DailyAchievement -Force
 
 Describe 'GW2DailyAchievement Tests' {
 
