@@ -58,7 +58,7 @@ Get-GW2DailyAchievement | Get-GW2DailyAchievementTip -OutVariable GW2 | Format-T
 Get-GW2DailyAchievement | Get-GW2DailyAchievementTip -OutVariable GW2 | Format-Table -Wrap ; ($GW2).Waypoint | clip
 ```
 
-## Build status of master branches
+## Build status
 
 | Travis CI |
 |--------------------------|
