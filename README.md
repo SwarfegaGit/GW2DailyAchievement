@@ -62,4 +62,7 @@ Get-GW2DailyAchievement | Get-GW2DailyAchievementTip -OutVariable GW2 | Format-T
 
 | Travis CI |
 |--------------------------|
-| ![Build Status](https://travis-ci.org/SwarfegaGit/GW2DailyAchievement.svg?branch=master)](https://travis-ci.org/SwarfegaGit/GW2DailyAchievement) |
+| [![tv-image][]][tv-site] |
+
+[tv-image]: https://travis-ci.org/SwarfegaGit/GW2DailyAchievement.svg?branch=master
+[tv-site]: https://travis-ci.org/SwarfegaGit/GW2DailyAchievement
