@@ -1,17 +1,14 @@
-GW2DailyAchievement
-=======
+# GW2DailyAchievement
 
 GW2DailyAchievement is a simple PowerShell module to fetch and parse the daily achievement [API](https://wiki.guildwars2.com/wiki/API:2/achievements/daily).
 
-Installation via the PowerShell Gallery
----------------------------------------
+## Installation via the PowerShell Gallery
 
 ```powershell
 Install-Module GW2DailyAchievement
 ```
 
-Usage
-------
+## Usage
 
 Fetch todays PvE Daily Achievements
 
@@ -61,4 +58,8 @@ Get-GW2DailyAchievement | Get-GW2DailyAchievementTip -OutVariable GW2 | Format-T
 Get-GW2DailyAchievement | Get-GW2DailyAchievementTip -OutVariable GW2 | Format-Table -Wrap ; ($GW2).Waypoint | clip
 ```
 
-[![Build Status](https://travis-ci.org/SwarfegaGit/GW2DailyAchievement.svg?branch=master)](https://travis-ci.org/SwarfegaGit/GW2DailyAchievement)
+## Build status of master branches
+
+| Travis CI |
+|--------------------------|
+| ![Build Status](https://travis-ci.org/SwarfegaGit/GW2DailyAchievement.svg?branch=master)](https://travis-ci.org/SwarfegaGit/GW2DailyAchievement) |
