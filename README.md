@@ -1,6 +1,7 @@
 # GW2DailyAchievement
 
 GW2DailyAchievement is a simple PowerShell module to fetch and parse the daily achievement [API](https://wiki.guildwars2.com/wiki/API:2/achievements/daily).
+As of version '2.1.0.0' PowerShell Core is now supported.
 
 ## Installation via the PowerShell Gallery
 
@@ -52,7 +53,7 @@ Fetch todays PvE Daily Achievements with tip and save the waypoint to the clipbo
 Get-GW2DailyAchievement | Get-GW2DailyAchievementTip -OutVariable GW2 | Format-Table -Wrap ; ($GW2).Waypoint | Set-Clipboard
 ```
 
-(Pre-PowerShell v5)
+(Windows PowerShell 1, 2, 3, 4 and PowerShell Core)
 
 ```powershell
 Get-GW2DailyAchievement | Get-GW2DailyAchievementTip -OutVariable GW2 | Format-Table -Wrap ; ($GW2).Waypoint | clip
