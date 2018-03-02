@@ -7,7 +7,7 @@ As of version '2.1.0.0' PowerShell Core is now supported.
 ## Installation via the PowerShell Gallery
 
 ```powershell
-Install-Module GW2DailyAchievement
+Install-Module GW2DailyAchievement -Scope CurrentUser
 ```
 
 ## Usage
